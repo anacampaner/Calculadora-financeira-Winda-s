@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Winda`s</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card_leitura_dados">
+        <h2>Calcule sua economia com a winda`s</h2>
+
+        <div class="campos">
+            Consumo de Energia do Ar Condicionado:
+            <input type="number" id="input_consumo_arCondicionado" placeholder="kWh">
+            Consumo de Energia dos desumidificadores:
+            <input type="number" id="input_consumo_desumidificador" placeholder="Litro">
+            Horas de Funcionamento dos Sistemas:
+            <input type="text" id="input_hora_funcionamento" placeholder="Horas">
+        </div>
+        <button onclick="calcularEconomia()" class="botao">Calcular</button>
+        <div id="mensagem_resultado">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function calcularEconomia()
+    {
+        var consumoArCondicionado = Number(input_consumo_arCondicionado.value);
+        var consumoDesumidificador = Number(input_consumo_desumidificador.value);
+        var horaFuncionamento = Number(input_hora_funcionamento.value);
+
+        var reducaoArCondicionado = consumoArCondicionado * 0.20;
+        var reducaoDesumidificador = consumoDesumidificador * 0.15;
+
+        var economiaArCondicionado = reducaoArCondicionado * horaFuncionamento * 0.649; 
+        var economiaDesumidificador = reducaoDesumidificador * horaFuncionamento * 0.005; 
+        var economiaTotal = economiaArCondicionado + economiaDesumidificador;
+
+ 
+        mensagem_resultado.innerHTML = 
+        `
+            <h2>Resultados:</h2>
+            <p>Economia em Ar Condicionado: R$ ${economiaArCondicionado.toFixed(2)}</p>
+            <p>Economia em Desumidificadores: R$ ${economiaDesumidificador.toFixed(2)}</p>
+            <p><strong>Economia Total Estimada: R$ ${economiaTotal.toFixed(2)}</strong></p>
+        `;
+    };
+</script>
+
